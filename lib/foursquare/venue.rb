@@ -66,6 +66,10 @@ module Foursquare
       primary_category ? Foursquare::Icon.new(primary_category["icon"]) : Foursquare::Icon.venue
     end
     
+    def url
+      @json["url"]  
+    end
+
     def short_url
       @json["shortUrl"]
     end
