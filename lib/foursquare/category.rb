@@ -39,5 +39,9 @@ module Foursquare
       @json["primary"] == true
     end
     
+    def categories
+      @json["categories"].map { |hash| Foursquare::Category.new(hash) }
+    end
+
   end
 end

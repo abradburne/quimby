@@ -14,7 +14,7 @@ module Foursquare
     # returns all categories
     # https://developer.foursquare.com/docs/venues/categories.html
     def categories
-      @foursquare.get('venues/categories')['categories']
+      @foursquare.get('venues/categories')['categories'].map { |hash| Foursquare::Category.new(hash) }
     end
     
     # explore
