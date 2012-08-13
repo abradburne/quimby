@@ -40,7 +40,7 @@ module Foursquare
     end
     
     def categories
-      @json["categories"].map { |hash| Foursquare::Category.new(hash) }
+      @json["categories"].map { |hash| Foursquare::Category.new(hash) } if @json["categories"]
     end
 
   end
