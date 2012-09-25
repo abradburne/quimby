@@ -36,6 +36,10 @@ module Foursquare
       @json["country"]
     end
     
+    def cc
+      @json["cc"]
+    end
+
     def lat
       @json["lat"]
     end
@@ -46,6 +50,10 @@ module Foursquare
     
     def distance
       @json["distance"]
+    end
+
+    def json
+      @json
     end
     
   end

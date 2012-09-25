@@ -20,7 +20,8 @@ module Foursquare
     end
 
     def contact
-      @json["contact"]
+      # @json["contact"]
+      Foursquare::Contact.new(@json["contact"])
     end
     
     def twitter
