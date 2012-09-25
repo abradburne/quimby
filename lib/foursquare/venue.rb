@@ -83,8 +83,13 @@ module Foursquare
     # if you want to get all the photos, try all_photos
     def photos
       return all_photos if @json["photos"].blank?
-      @json["photos"]["groups"].select { |g| g["type"] == "venue" }.first["items"].map do |item|
-        Foursquare::Photo.new(@foursquare, item)
+      items = @json["photos"]["groups"].select { |g| g["type"] == "venue" }.first
+      if items
+        items["items"].map do |item|
+          Foursquare::Photo.new(@foursquare, item)
+        end
+      else
+        []
       end
     end
     
