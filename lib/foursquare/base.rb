@@ -8,7 +8,7 @@ module Foursquare
     # added version to make sure we are using the correct API version
     # see https://groups.google.com/forum/#!topic/foursquare-api/OGLePZU8VXQ
     # https://developer.foursquare.com/docs/overview.html#versioning
-    VERSION = "20120609"
+    VERSION = "20131106"
 
     def initialize(*args)
       case args.size
@@ -60,6 +60,7 @@ module Foursquare
     def get(path, params={})
       Foursquare.log("GET #{API + path}")
       Foursquare.log("PARAMS: #{params.inspect}")
+      params = camelize(params.merge(:v => VERSION))
       merge_auth_params(params)
       response = JSON.parse(Typhoeus::Request.get(API + path, :params => params).body)
       Foursquare.log(response.inspect)
@@ -69,6 +70,7 @@ module Foursquare
     def post(path, params={})
       Foursquare.log("POST #{API + path}")
       Foursquare.log("PARAMS: #{params.inspect}")
+      params = camelize(params.merge(:v => VERSION))
       merge_auth_params(params)
       response = JSON.parse(Typhoeus::Request.post(API + path, :params => params).body)
       error(response) || response["response"]
